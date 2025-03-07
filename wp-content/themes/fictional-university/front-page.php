@@ -56,12 +56,20 @@
                     <?php $posts->the_post(); ?>
                     <div class="event-summary">
                         <a class="event-summary__date event-summary__date--beige t-center" href="#">
-                            <span class="event-summary__month">Jan</span>
-                            <span class="event-summary__day">20</span>
+                            <span class="event-summary__month"><?php the_time('M') ?></span>
+                            <span class="event-summary__day"><?php the_time('d') ?></span>
                         </a>
                         <div class="event-summary__content">
                             <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                            <p>For the 100th year in a row we are voted #1. <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
+                            <p>
+                                <?php if (has_excerpt()): ?>
+                                    <?php echo get_the_excerpt(); ?>
+                                <?php else: ?>
+                                    <?php echo wp_trim_words(get_the_content(), 14, '...') ?>
+                                <?php endif; ?>
+
+                                <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a>
+                            </p>
                         </div>
                     </div>
                 <?php endwhile; ?>

@@ -14,5 +14,23 @@ function university_features()
 {
     register_nav_menu('headerMenuLocation', 'Header Menu Location');
     add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
 }
 add_action('after_setup_theme', 'university_features');
+function university_post_types()
+{
+    register_post_type('event', array(
+        // 'show_in_rest' => true,
+        'public' => true,
+        'labels' => array(
+            'name' => 'Events',
+            'singular_name' => 'Event',
+            'add_new_item' => 'Add New Event',
+            'edit_item' => 'Edit Event',
+            'all_items' => 'All Events'
+        ),
+        'menu_icon' => 'dashicons-calendar',
+        'supports' => array('title', 'editor'),
+    ));
+}
+add_action('init', 'university_post_types');
