@@ -31,6 +31,8 @@ function university_post_types()
         ),
         'menu_icon' => 'dashicons-calendar',
         'supports' => array('title', 'editor'),
+        'rewrite'     => array('slug' => 'events'), // my custom slug
+        'has_archive' => true,
     ));
 }
 add_action('init', 'university_post_types');
